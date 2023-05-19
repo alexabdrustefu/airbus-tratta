@@ -147,7 +147,7 @@ public class TrattaDTO {
 	
 	public static TrattaDTO buildTrattaDTOFromModel(Tratta trattaModel, boolean includeAirbus) {
 		TrattaDTO result = new TrattaDTO(trattaModel.getId(), trattaModel.getCodiceTratta(), trattaModel.getDescrizione(),
-				trattaModel.getData(), trattaModel.getOraDecollo(),trattaModel.getOraAtterraggio());
+				trattaModel.getData(), trattaModel.getOraDecollo(),trattaModel.getOraAtterraggio(),trattaModel.getStato() );
 
 		if (includeAirbus)
 			result.setAirbus(AirbusDTO.buildAirbusDTOFromModel(trattaModel.getAirbus(), false));
