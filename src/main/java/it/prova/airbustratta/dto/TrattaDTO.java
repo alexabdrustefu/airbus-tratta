@@ -31,7 +31,7 @@ public class TrattaDTO {
 	private LocalTime oraAtterraggio;
 	@NotNull(message="{stato.notnull}")
 	private Stato stato;
-	@JsonIgnoreProperties(value = { "films" })
+	@JsonIgnoreProperties(value = { "tratte" })
 	@NotNull(message = "{airbus.notnull}")
 	private AirbusDTO airbus;
 	//costruttore
