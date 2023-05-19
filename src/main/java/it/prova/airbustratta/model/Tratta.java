@@ -27,22 +27,26 @@ public class Tratta {
 	private LocalTime oraDecollo;
 	@Column(name="oraAtterraggio")
 	private LocalTime oraAtterraggio;
-	@Column(name="statp")
+	@Column(name="stato")
 	@Enumerated(EnumType.STRING)
 	private Stato stato;
+	@Column(name="airbus")
+	private Airbus airbus;
+	
 	//costruttore
 	public Tratta() {
 	}
-	public Tratta(String codiceTratta, LocalDate data, LocalTime oraDecollo, LocalTime oraAtterraggio, Stato stato) {
+	public Tratta(String codiceTratta, LocalDate data, LocalTime oraDecollo, LocalTime oraAtterraggio, Stato stato,Airbus airbus) {
 		super();
 		this.codiceTratta = codiceTratta;
 		this.data = data;
 		this.oraDecollo = oraDecollo;
 		this.oraAtterraggio = oraAtterraggio;
 		this.stato = stato;
+		this.airbus=airbus;
 	}
 	public Tratta(Long id, String codiceTratta, LocalDate data, LocalTime oraDecollo, LocalTime oraAtterraggio,
-			Stato stato) {
+			Stato stato,Airbus airbus) {
 		super();
 		this.id = id;
 		this.codiceTratta = codiceTratta;
@@ -50,6 +54,7 @@ public class Tratta {
 		this.oraDecollo = oraDecollo;
 		this.oraAtterraggio = oraAtterraggio;
 		this.stato = stato;
+		this.airbus=airbus;
 	}
 	//get e set
 	public Long getId() {
@@ -88,6 +93,13 @@ public class Tratta {
 	public void setStato(Stato stato) {
 		this.stato = stato;
 	}
+	public Airbus getAirbus() {
+		return airbus;
+	}
+	public void setAirbus(Airbus airbus) {
+		this.airbus = airbus;
+	}
+	
 	
 	
 }
