@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name="airbus")
 public class Airbus {
@@ -33,7 +34,7 @@ public class Airbus {
 	//costruttori
 	public Airbus() {
 	}
-
+	
 	public Airbus(Long id, String codice, String descrizione, LocalDate dataInizioServizio, Integer numeroPassegeri,
 			Set<Tratta> tratte) {
 		super();
@@ -55,6 +56,17 @@ public class Airbus {
 		this.tratte = tratte;
 	}
 	//metodi get e set
+
+	public Airbus(Long id, @NotBlank(message = "{codice.notblank}") String codice,
+			@NotBlank(message = "{descrizione.notblank}") String descrizione,
+			@NotBlank(message = "{dataInizioServizio.notnull}") LocalDate dataInizioServizio,
+			@NotBlank(message = "{numeroPassegeri.notnull}") Integer numeroPassegeri) {
+		this.id=id;
+		this.codice=codice;
+		this.descrizione=descrizione;
+		this.dataInizioServizio=dataInizioServizio;
+		this.numeroPassegeri=numeroPassegeri;
+	}
 
 	public Long getId() {
 		return id;
