@@ -40,7 +40,7 @@ public class Tratta {
 	private Stato stato;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "airbus_id", nullable = false)
-	private Airbus airbus;;
+	private Airbus airbus;
 	
 	//costruttore
 	public Tratta() {

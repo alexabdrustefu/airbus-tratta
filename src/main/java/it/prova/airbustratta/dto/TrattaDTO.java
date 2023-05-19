@@ -115,22 +115,13 @@ public class TrattaDTO {
 	public void setOraDecollo(LocalTime oraDecollo) {
 		this.oraDecollo = oraDecollo;
 	}
-	public LocalTime getoraAtterraggio() {
-		return oraAtterraggio;
-	}
-	public void setoraAtterraggio(LocalTime oraAtterraggio) {
-		this.oraAtterraggio = oraAtterraggio;
-	}
+	
 	public Stato getStato() {
 		return stato;
 	}
 	public void setStato(Stato stato) {
 		this.stato = stato;
 	}
-	
-	
-	
-	
 	public LocalTime getOraAtterraggio() {
 		return oraAtterraggio;
 	}

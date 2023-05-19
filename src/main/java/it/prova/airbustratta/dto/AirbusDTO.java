@@ -25,7 +25,7 @@ public class AirbusDTO {
 	@NotNull(message="{numeroPassegeri.notnull}")
 	private Integer numeroPassegeri;
 	@NotNull(message="{tratte.notnull}")
-	private Set<TrattaDTO> tratte= new HashSet<TrattaDTO>(0);
+	private Set<TrattaDTO> tratte= new HashSet<TrattaDTO>();
 	//costruttore
 	public AirbusDTO() {
 	}
@@ -113,7 +113,7 @@ public class AirbusDTO {
 		return result;
 	}
 	
-	public static List<AirbusDTO> createRegistaDTOListFromModelList(List<Airbus> modelListInput,
+	public static List<AirbusDTO> createAirbusDTOListFromModelList(List<Airbus> modelListInput,
 			boolean includeTratte) {
 		return modelListInput.stream().map(airbusEntity -> {
 			AirbusDTO result = AirbusDTO.buildAirbusDTOFromModel(airbusEntity, includeTratte);
