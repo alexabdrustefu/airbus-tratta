@@ -2,6 +2,7 @@ package it.prova.airbustratta.service;
 
 import java.util.List;
 
+import it.prova.airbustratta.dto.AirbusDTO;
 import it.prova.airbustratta.model.Airbus;
 
 
@@ -24,6 +25,8 @@ public interface AirbusService {
 	List<Airbus> findByExample(Airbus example);
 	
 	Airbus findByCodiceAndDescrizione(String Codice, String descrizione);
+	
+	List<AirbusDTO> findTratteSovrapposteByOra();
 
 
 }

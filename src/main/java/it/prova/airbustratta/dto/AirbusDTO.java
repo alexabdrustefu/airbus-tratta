@@ -16,19 +16,42 @@ import it.prova.airbustratta.model.Airbus;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AirbusDTO {
 	private Long id;
-	@NotBlank(message= "{codice.notblank}")
+	@NotBlank(message = "{codice.notblank}")
 	private String codice;
-	@NotBlank(message= "{descrizione.notblank}")
+	@NotBlank(message = "{descrizione.notblank}")
 	private String descrizione;
-	@NotNull(message="{dataInizioServizio.notnull}")
+	@NotNull(message = "{dataInizioServizio.notnull}")
 	private LocalDate dataInizioServizio;
-	@NotNull(message="{numeroPassegeri.notnull}")
+	@NotNull(message = "{numeroPassegeri.notnull}")
 	private Integer numeroPassegeri;
-	@NotNull(message="{tratte.notnull}")
-	private Set<TrattaDTO> tratte= new HashSet<TrattaDTO>();
-	//costruttore
+	@NotNull(message = "{tratte.notnull}")
+	private Set<TrattaDTO> tratte = new HashSet<TrattaDTO>();
+	private boolean conSovrapposizioni;
+
+	// costruttore
+	
+	
+	
+	
+	
 	public AirbusDTO() {
 	}
+
+	public AirbusDTO(Long id, @NotBlank(message = "{codice.notblank}") String codice,
+			@NotBlank(message = "{descrizione.notblank}") String descrizione,
+			@NotNull(message = "{dataInizioServizio.notnull}") LocalDate dataInizioServizio,
+			@NotNull(message = "{numeroPassegeri.notnull}") Integer numeroPassegeri,
+			@NotNull(message = "{tratte.notnull}") Set<TrattaDTO> tratte, boolean conSocrapposizioni) {
+		super();
+		this.id = id;
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.dataInizioServizio = dataInizioServizio;
+		this.numeroPassegeri = numeroPassegeri;
+		this.tratte = tratte;
+		this.conSovrapposizioni = conSocrapposizioni;
+	}
+
 	public AirbusDTO(Long id, @NotBlank(message = "{codice.notblank}") String codice,
 			@NotBlank(message = "{descrizione.notblank}") String descrizione,
 			@NotBlank(message = "{dataInizioServizio.notnull}") LocalDate dataInizioServizio,
@@ -42,6 +65,7 @@ public class AirbusDTO {
 		this.numeroPassegeri = numeroPassegeri;
 		this.tratte = tratte;
 	}
+
 	public AirbusDTO(@NotBlank(message = "{codice.notblank}") String codice,
 			@NotBlank(message = "{descrizione.notblank}") String descrizione,
 			@NotBlank(message = "{dataInizioServizio.notnull}") LocalDate dataInizioServizio,
@@ -54,67 +78,88 @@ public class AirbusDTO {
 		this.numeroPassegeri = numeroPassegeri;
 		this.tratte = tratte;
 	}
+
 	public AirbusDTO(Long id, String codice, String descrizione, LocalDate dataInizioServizio,
 			Integer numeroPassegeri) {
-		this.id=id;
+		this.id = id;
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.dataInizioServizio = dataInizioServizio;
 		this.numeroPassegeri = numeroPassegeri;
-		}
-	//get e set
+	}
+
+	// get e set
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getCodice() {
 		return codice;
 	}
+
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
 	public LocalDate getDataInizioServizio() {
 		return dataInizioServizio;
 	}
+
 	public void setDataInizioServizio(LocalDate dataInizioServizio) {
 		this.dataInizioServizio = dataInizioServizio;
 	}
+
 	public Integer getNumeroPassegeri() {
 		return numeroPassegeri;
 	}
+
 	public void setNumeroPassegeri(Integer numeroPassegeri) {
 		this.numeroPassegeri = numeroPassegeri;
 	}
+
 	public Set<TrattaDTO> getTratte() {
 		return tratte;
 	}
+
 	public void setTratte(Set<TrattaDTO> tratte) {
 		this.tratte = tratte;
 	}
-	
+
 	public Airbus buildAirbusModel() {
-		return new Airbus(this.id,this.codice,this.descrizione,this.dataInizioServizio,this.numeroPassegeri);
-	} 
-	
-	
-	public static AirbusDTO buildAirbusDTOFromModel(Airbus airbusModel,boolean includeTratte) {
+		return new Airbus(this.id, this.codice, this.descrizione, this.dataInizioServizio, this.numeroPassegeri);
+	}
+
+	public static AirbusDTO buildAirbusDTOFromModel(Airbus airbusModel, boolean includeTratte) {
 		AirbusDTO result = new AirbusDTO(airbusModel.getId(), airbusModel.getCodice(), airbusModel.getDescrizione(),
 				airbusModel.getDataInizioServizio(), airbusModel.getNumeroPassegeri());
 		if (includeTratte)
 			result.setTratte(TrattaDTO.createTrattaDTOSetFromModelSet(airbusModel.getTratte(), false));
 		return result;
 	}
+
 	
-	public static List<AirbusDTO> createAirbusDTOListFromModelList(List<Airbus> modelListInput,
-			boolean includeTratte) {
+
+	public Boolean getConSovrapposizioni() {
+		return conSovrapposizioni;
+	}
+
+	public void setConSovrapposizioni(Boolean conSovrapposizioni) {
+		this.conSovrapposizioni = conSovrapposizioni;
+	}
+
+	public static List<AirbusDTO> createAirbusDTOListFromModelList(List<Airbus> modelListInput, boolean includeTratte) {
 		return modelListInput.stream().map(airbusEntity -> {
 			AirbusDTO result = AirbusDTO.buildAirbusDTOFromModel(airbusEntity, includeTratte);
 			if (includeTratte)
@@ -122,6 +167,5 @@ public class AirbusDTO {
 			return result;
 		}).collect(Collectors.toList());
 	}
-	
 
 }

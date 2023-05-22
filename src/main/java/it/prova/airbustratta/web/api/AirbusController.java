@@ -1,5 +1,6 @@
 package it.prova.airbustratta.web.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -82,6 +83,11 @@ public class AirbusController {
 	public List<AirbusDTO> search(@RequestBody AirbusDTO example) {
 		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.findByExample(example.buildAirbusModel()),
 				false);
+	}
+	@GetMapping("/tratteSovrapposte")
+	public List<AirbusDTO> listaAirbusTratte (){
+		return airbusService.findTratteSovrapposteByOra();
+		
 	}
 
 

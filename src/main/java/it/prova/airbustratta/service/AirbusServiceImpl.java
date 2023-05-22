@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.airbustratta.dto.AirbusDTO;
 import it.prova.airbustratta.model.Airbus;
 import it.prova.airbustratta.repository.Airbus.AirbusRepository;
 import it.prova.airbustratta.web.api.exception.AirbusNotFoundException;
@@ -22,6 +23,7 @@ public class AirbusServiceImpl implements AirbusService {
 		return (List<Airbus>) repository.findAll();
 
 	}
+
 	@Override
 	@Transactional
 	public Airbus caricaSingoloElemento(Long id) {
@@ -66,10 +68,20 @@ public class AirbusServiceImpl implements AirbusService {
 	public Airbus findByCodiceAndDescrizione(String Codice, String descrizione) {
 		return repository.findByCodiceAndDescrizione(Codice, descrizione);
 	}
+
 	@Override
 	@Transactional
 	public List<Airbus> listAllElementsEager() {
 		return (List<Airbus>) repository.findAllEager();
+	}
+
+	@Override
+	public List<AirbusDTO> findTratteSovrapposteByOra() {
+		List<AirbusDTO> result = AirbusDTO.createAirbusDTOListFromModelList(repository.findTratteSovrapposte(), true);
+		for (AirbusDTO resultItem : result) {
+			resultItem.setConSovrapposizioni(true);
+		}
+		return result;
 	}
 
 }

@@ -68,6 +68,13 @@ public class Airbus {
 		this.numeroPassegeri=numeroPassegeri;
 	}
 
+	public Airbus(String codice, LocalDate dataInizioServizio, String descrizione, int numeroPassegeri) {
+		this.codice=codice;
+		this.descrizione=descrizione;
+		this.dataInizioServizio=dataInizioServizio;
+		this.numeroPassegeri=numeroPassegeri;
+	}
+
 	public Long getId() {
 		return id;
 	}

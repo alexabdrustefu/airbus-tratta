@@ -101,6 +101,16 @@ public class Tratta {
 		this.oraDecollo = oraDecollo;
 		this.oraAtterraggio = oraAtterraggio;
 	}
+	public Tratta(String codiceTratta, String descrizione, LocalDate data, LocalTime oraAtterraggio, LocalTime oraDecollo, Stato stato,
+			Airbus airbus) {
+		this.codiceTratta = codiceTratta;
+		this.descrizione = descrizione;
+		this.data = data;
+		this.oraDecollo = oraDecollo;
+		this.oraAtterraggio = oraAtterraggio;
+		this.stato = stato;
+		this.airbus = airbus;
+	}
 	//get e set
 	public Long getId() {
 		return id;
