@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.prova</groupId>
-	<artifactId>airbus_tratta</artifactId>
+	<artifactId>airbus-tratta</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>airbus-tratta</name>
 	<description>Demo project for Spring Boot</description>
